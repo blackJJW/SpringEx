@@ -25,6 +25,8 @@ public class BoardServiceTests {
         vo.setWriter("service test");
         
         service.enroll(vo);
+        // BoardService 인터페이스의 enroll함수를 호출하면
+        // 매핑되어 이쓴 BoardMapper.xml의 id가 enroll인 쿼리가 실행
         
     }
 }
