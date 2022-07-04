@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.test.mapper.BoardMapper">
+ 	 <!-- 게시판 등록 -->
+ 	 <!-- 인자롤 전달받은 dto의 getter 함수를 자동으로 호출해서 매핑 -->
+    <insert id="enroll">
+        insert into test_board(title, content, writer) values (#{title}, #{content}, #{writer})
+    </insert>
+ 
+  </mapper>
