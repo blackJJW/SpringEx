@@ -11,9 +11,7 @@
     
     <!-- 게시판 목록 -->
     <select id="getList" resultType="com.test.model.BoardVO">
-    
         select * from test_board
-    
     </select>
  
   </mapper>
