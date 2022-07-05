@@ -8,5 +8,12 @@
     <insert id="enroll">
         insert into test_board(title, content, writer) values (#{title}, #{content}, #{writer})
     </insert>
+    
+    <!-- 게시판 목록 -->
+    <select id="getList" resultType="com.test.model.BoardVO">
+    
+        select * from test_board
+    
+    </select>
  
   </mapper>
