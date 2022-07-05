@@ -44,4 +44,28 @@ public class BoardServiceTests {
         service.getList().forEach(board -> log.info("" + board));        
         
     }
+    
+    /*게시판 조회*/
+    @Test
+    public void testGETPage() {
+        
+        int bno = 3;
+        
+        log.info("" + service.getPage(bno));
+        
+    }
+    
+    /* 게시판 수정 */
+    @Test
+    public void testModify() {
+        
+        BoardVO board = new BoardVO();
+        board.setBno(6);
+        board.setTitle("수정 제목");
+        board.setContent("수정 내용");
+        
+        int result = service.modify(board);
+        log.info("result : " +result);
+        
+    }
 }

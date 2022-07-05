@@ -58,4 +58,32 @@ public class BoardController {
         return "redirect:/board/list";
         
     }
+    
+    /* 게시글 조회 */
+    @GetMapping("/get")
+    public void boardGetPageGET(int bno, Model model) {
+        
+        model.addAttribute("pageInfo", bservice.getPage(bno));
+        
+    }
+    
+    /* 수정 페이지 이동 */
+    @GetMapping("/modify")
+    public void boardModifyGET(int bno, Model model) {
+        
+        model.addAttribute("pageInfo", bservice.getPage(bno));
+        
+    }
+    
+    /* 페이지 수정 */
+    @PostMapping("/modify")
+    public String boardModifyPOST(BoardVO board, RedirectAttributes rttr) {
+        
+        bservice.modify(board);
+        
+        rttr.addFlashAttribute("result", "modify success");
+        
+        return "redirect:/board/list";
+        
+    }
 }

@@ -13,5 +13,16 @@
     <select id="getList" resultType="com.test.model.BoardVO">
         select * from test_board
     </select>
+    
+    <!-- 게시글 조회 -->
+    <select id="getPage" resultType="com.test.model.BoardVO">
+        select * from test_board where bno = #{bno}
+    </select>
+    
+    <!-- 게시판 수정 -->
+    <update id="modify">
+        <!-- Oracle -->    
+        update test_board set title = #{title}, content = #{content}, updatedate = sysdate where bno = #{bno}
+    </update>
  
   </mapper>

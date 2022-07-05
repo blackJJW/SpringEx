@@ -61,28 +61,37 @@
 <h1>목록페이지입니다.</h1>
 
 <div class="table_wrap">
-	<a href="/board/enroll" class="top_btn">게시판 등록</a>
-	<table>
-		<thead>
-			<tr>
-				<th class="bno_width">번호</th>
-				<th class="title_width">제목</th>
-				<th class="writer_width">작성자</th>
-				<th class="regdate_width">작성일</th>
-				<th class="updatedate_width">수정일</th>
-			</tr>
-		</thead>
-		<c:forEach items="${list}" var="list">
+      <a href="/board/enroll" class="top_btn">게시판 등록</a>
+      <table>
+         <thead>
             <tr>
-                <td><c:out value="${list.bno}"/></td>
-                <td><c:out value="${list.title}"/></td>
-                <td><c:out value="${list.writer}"/></td>
-                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regdate}"/></td>
-                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
+               <th class="bno_width">번호</th>
+               <th class="title_width">제목</th>
+               <th class="writer_width">작성자</th>
+               <th class="regdate_width">작성일</th>
+               <th class="updatedate_width">수정일</th>
             </tr>
-        </c:forEach>
-	</table>
-</div>
+         </thead>
+         <c:forEach items="${list}" var="list">
+            <tr>
+               <td><c:out value="${list.bno}" /></td>
+               <td>
+                  <a class="move" href='<c:out value="${list.bno}"/>'>
+                   <c:out value="${list.title}" />
+                  </a>
+               </td>
+               <td><c:out value="${list.writer}" /></td>
+               <%-- <td><c:out value="${list.regdate}" /></td> --%>
+               <%-- <td><c:out value="${list.updateDate}" /></td> --%>
+               <td><fmt:formatDate pattern="yyyy/MM/dd"
+                     value="${list.regdate}" /></td>
+               <td><fmt:formatDate pattern="yyyy/MM/dd"
+                     value="${list.updateDate}" /></td>
+            </tr>
+         </c:forEach>
+      </table>
+      <form id="moveForm" method="get"></form>
+   </div>
 
 
 
@@ -98,13 +107,31 @@
                 return;
             }
             
-            if(result === "enroll success"){
+            else if(result === "enroll success"){
                 alert("등록이 완료되었습니다.");
+            }
+            
+            else if(result === "modify success"){
+                alert("수정이 완료되었습니다.");
             }
             
         }    
  
     });
+    
+	let moveForm = $("#moveForm");
+    
+    $(".move").on("click", function(e){
+        e.preventDefault(); // 이벤트 버블링 막기
+		
+        let nameEle = $("input[name=bno]")
+        nameEle.remove();
+        // 비어있는 moveForm에 동적으로 hidden input으로 bno를 추가
+        moveForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+        moveForm.attr("action", "/board/get");
+        moveForm.submit();
+    });
+    
  
 </script>
 
