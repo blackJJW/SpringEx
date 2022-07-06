@@ -29,5 +29,17 @@
     <delete id="delete">
         delete from test_board where bno = #{bno}
     </delete>
+    
+     <!-- Oracle -->
+    <!-- 게시물 목록(페이징) -->
+    <!-- 게시물 목록(페이징) -->
+    <select id="getListPaging" resultType="com.test.model.BoardVO">
+    <![CDATA[
+        select bno, title, content, writer, regdate, updatedate from(
+                        select /*+INDEX_DESC(test_board pk_board) */ rownum  as rn, bno, title, content, writer, regdate, updatedate
+                        from test_board where rownum <= #{pageNum} * #{amount}) 
+        where rn > (#{pageNum} -1) * #{amount}
+    ]]>
+    </select>
  
   </mapper>

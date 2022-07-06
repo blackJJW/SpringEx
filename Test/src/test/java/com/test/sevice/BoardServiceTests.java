@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.test.model.BoardVO;
+import com.test.model.Criteria;
 import com.test.service.BoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -75,6 +76,19 @@ public class BoardServiceTests {
         
         int result = service.delete(22);
         log.info("result : " + result);
+        
+    }
+    
+    /* 게시판 조회(페이징 적용) */
+    @Test
+    public void testGetListPaging() {
+        
+        Criteria cri = new Criteria();
+        
+        List list = service.getListPaging(cri);
+        
+        list.forEach(board -> log.info("" + board));
+        
         
     }
 }
