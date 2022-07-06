@@ -24,5 +24,10 @@
         <!-- Oracle -->    
         update test_board set title = #{title}, content = #{content}, updatedate = sysdate where bno = #{bno}
     </update>
+    
+    <!-- 게시판 삭제 -->
+    <delete id="delete">
+        delete from test_board where bno = #{bno}
+    </delete>
  
   </mapper>
