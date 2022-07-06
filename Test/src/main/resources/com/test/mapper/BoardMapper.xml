@@ -41,5 +41,10 @@
         where rn > (#{pageNum} -1) * #{amount}
     ]]>
     </select>
+    
+    <!-- 게시물 총 개숫 -->
+    <select id="getTotal" resultType="int">
+        select count(*) from test_board
+    </select>
  
   </mapper>

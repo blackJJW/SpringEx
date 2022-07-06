@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.test.model.BoardVO;
 import com.test.model.Criteria;
+import com.test.model.PageMakerDTO;
 import com.test.service.BoardService;
 
 @Controller
@@ -41,6 +42,12 @@ public class BoardController {
         log.info("boardListGET");
         
         model.addAttribute("list", bservice.getListPaging(cri));
+        
+        int total = bservice.getTotal();
+        
+        PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+        
+        model.addAttribute("pageMaker", pageMake);
         
     }
     
